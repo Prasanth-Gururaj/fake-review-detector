@@ -1,5 +1,3 @@
-import os, sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import pandas as pd
 from pipelines.data_pipeline.preprocess import clean_text, preprocess, split_data
 from pipelines.data_pipeline.validate import validate
