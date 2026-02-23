@@ -9,3 +9,8 @@ mlruns/
 .DS_Store
 venv/
 fake-review-env/
+model
+
+mlartifacts/
+
+*.egg-info/

@@ -1,0 +1,53 @@
+# config/config.yaml
+
+data:
+  train_path: "data/train.csv"
+  test_path: "data/test.csv"
+  reviews_path: "data/reviews.csv"
+  n_samples: 50000
+  test_size: 0.2
+  random_seed: 42
+
+mlflow:
+  tracking_uri: "http://127.0.0.1:5000"
+  experiment_name: "fake-review-detector"
+
+baseline_model:
+  model_type: "logistic_regression"
+  vectorizer: "tfidf"
+  max_features: 10000
+  ngram_range: [1, 2]
+  C: 1.0
+  max_iter: 300
+
+distilbert_model:
+  model_name: "distilbert-base-uncased"
+  num_labels: 2
+  max_length: 128
+  learning_rate: 1.0e-5
+  epochs: 5
+  batch_size: 32
+  warmup_steps: 100
+  weight_decay: 0.01
+  "eval_strategy": "epoch"
+  save_strategy: "epoch"
+  load_best_model_at_end: true
+
+optimization:
+  quantization: "int8"
+  onnx_opset: 14
+  onnx_output_path: "model/model.onnx"
+  quantized_output_path: "model/model_quantized.onnx"
+
+deployment:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  model_path: "model/model.onnx"
+
+monitoring:
+  log_file: "monitoring/prediction_log.json"
+  drift_threshold: 0.05
+  min_samples_for_drift: 100
+  fake_score_threshold: 0.5
+  confidence_alert_threshold: 0.70
