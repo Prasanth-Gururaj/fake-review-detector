@@ -29,7 +29,7 @@ distilbert_model:
   batch_size: 32
   warmup_steps: 100
   weight_decay: 0.01
-  "eval_strategy": "epoch"
+  eval_strategy: "epoch"
   save_strategy: "epoch"
   load_best_model_at_end: true
 
@@ -43,7 +43,8 @@ deployment:
   host: "0.0.0.0"
   port: 8000
   workers: 4
-  model_path: "model/model.onnx"
+  model_path: "model/distilbert-final"
+  fake_threshold: 0.5
 
 monitoring:
   log_file: "monitoring/prediction_log.json"
